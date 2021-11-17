@@ -1,0 +1,50 @@
+{
+  "listeners": {
+      "*:8080": {
+          "pass": "routes/app"
+      }
+
+  },
+
+  "routes": {
+      "app": [
+          {
+              "match": {
+                  "uri": [
+                      "*.php",
+                      "*.php/*",
+                      "/wp-admin/"
+                  ]
+              },
+
+              "action": {
+                  "pass": "applications/app/direct"
+              }
+          },
+          {
+              "action": {
+                  "share": "/app/",
+                  "fallback": {
+                      "pass": "applications/app/index"
+                  }
+              }
+          }
+      ]
+  },
+
+  "applications": {
+      "app": {
+          "type": "php",
+          "targets": {
+              "direct": {
+                  "root": "/app/"
+              },
+
+              "index": {
+                  "root": "/app/",
+                  "script": "index.php"
+              }
+          }
+      }
+  }
+}
