@@ -32,7 +32,7 @@ jobs:
           context: .
           build-args: |
             PHP_VERSION=8
-            UNIT_VERSION=1.25.0
+            UNIT_VERSION=1.26.0
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8
 
@@ -42,6 +42,6 @@ jobs:
           context: .
           build-args: |
             PHP_VERSION=7
-            UNIT_VERSION=1.25.0
+            UNIT_VERSION=1.26.0
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:7
