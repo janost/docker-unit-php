@@ -14,7 +14,7 @@ ARG PHP_VERSION
 RUN apk add --no-cache \
     php${PHP_VERSION}-embed php${PHP_VERSION}-curl php${PHP_VERSION}-gd php${PHP_VERSION}-mbstring php${PHP_VERSION}-pecl-imagick \
     php${PHP_VERSION}-mysqli php${PHP_VERSION}-opcache php${PHP_VERSION}-xml php${PHP_VERSION}-zip php${PHP_VERSION}-pecl-apcu \
-    php${PHP_VERSION}-dom php${PHP_VERSION}-exif php${PHP_VERSION}-fileinfo php${PHP_VERSION}-iconv
+    php${PHP_VERSION}-dom php${PHP_VERSION}-exif php${PHP_VERSION}-fileinfo php${PHP_VERSION}-iconv php${PHP_VERSION}-intl
 RUN mkdir -p /var/lib/unit /usr/lib/unit/modules /app
 COPY --from=builder /usr/sbin/unitd /usr/sbin
 COPY --from=builder /usr/lib/unit/modules/* /usr/lib/unit/modules
