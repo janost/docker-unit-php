@@ -23,7 +23,9 @@
           },
           {
               "action": {
-                  "share": "/app/",
+                  "share": [
+                      "/app$uri"
+                  ],
                   "fallback": {
                       "pass": "applications/app/index"
                   }
