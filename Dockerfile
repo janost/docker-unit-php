@@ -1,4 +1,4 @@
-FROM alpine:edge as builder
+FROM alpine:3.20 as builder
 ARG PHP_VERSION
 ARG UNIT_VERSION
 RUN apk add --no-cache curl alpine-sdk openssl-dev pcre2-dev php${PHP_VERSION}-embed php${PHP_VERSION}-dev && \
@@ -12,7 +12,7 @@ RUN ./configure --prefix="/usr" --state="/var/lib/unit" --control="unix:/run/con
     make -j $(nproc) && \
     make install
 
-FROM alpine:edge as app
+FROM alpine:3.20 as app
 ARG PHP_VERSION
 RUN apk add --no-cache \
     php${PHP_VERSION}-embed php${PHP_VERSION}-curl php${PHP_VERSION}-gd php${PHP_VERSION}-mbstring \
