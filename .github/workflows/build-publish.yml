@@ -33,7 +33,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push image - PHP 8.2
+      - name: Build and push image - PHP 8.3
         uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
@@ -41,7 +41,7 @@ jobs:
           context: .
           file: Dockerfile
           build-args: |
-            PHP_VERSION=82
-            UNIT_VERSION=1.31.0
+            PHP_VERSION=83
+            UNIT_VERSION=1.32.1
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.2
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.3
