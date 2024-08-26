@@ -3,9 +3,9 @@ ARG PHP_VERSION
 ARG UNIT_VERSION
 RUN apk add --no-cache curl alpine-sdk openssl-dev pcre2-dev php${PHP_VERSION}-embed php${PHP_VERSION}-dev && \
     mkdir /tmp/unitbuild && curl https://unit.nginx.org/download/unit-${UNIT_VERSION}.tar.gz | tar -xz --strip 1 -C /tmp/unitbuild && \
-    ln -s /usr/bin/php-config82 /usr/bin/php-config && \
-    ln -s /usr/bin/php82 /usr/bin/php && \
-    ln -s /usr/lib/libphp82.so /usr/lib/libphp.so
+    ln -fs /usr/bin/php-config${PHP_VERSION} /usr/bin/php-config && \
+    ln -fs /usr/bin/php${PHP_VERSION} /usr/bin/php && \
+    ln -fs /usr/lib/libphp${PHP_VERSION}.so /usr/lib/libphp.so
 WORKDIR /tmp/unitbuild
 RUN ./configure --prefix="/usr" --state="/var/lib/unit" --control="unix:/run/control.unit.sock" --pid="/run/unit.pid" --log="/var/log/unit.log" --modules="/usr/lib/unit/modules" --openssl && \
     ./configure php --module=php${PHP_VERSION} --config=php-config${PHP_VERSION} && \
@@ -20,9 +20,9 @@ RUN apk add --no-cache \
     php${PHP_VERSION}-pecl-redis php${PHP_VERSION}-dom php${PHP_VERSION}-exif php${PHP_VERSION}-fileinfo php${PHP_VERSION}-iconv php${PHP_VERSION}-intl && \
     apk add --no-cache php${PHP_VERSION}-pecl-imagick --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ && \
     mkdir -p /var/lib/unit /usr/lib/unit/modules /app && \
-    ln -s /usr/bin/php-config82 /usr/bin/php-config && \
-    ln -s /usr/bin/php82 /usr/bin/php && \
-    ln -s /usr/lib/libphp82.so /usr/lib/libphp.so
+    ln -fs /usr/bin/php-config${PHP_VERSION} /usr/bin/php-config && \
+    ln -fs /usr/bin/php${PHP_VERSION} /usr/bin/php && \
+    ln -fs /usr/lib/libphp${PHP_VERSION}.so /usr/lib/libphp.so
 COPY --from=builder /usr/sbin/unitd /usr/sbin
 COPY --from=builder /usr/lib/unit/modules/* /usr/lib/unit/modules
 COPY conf.json /var/lib/unit/

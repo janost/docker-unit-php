@@ -8,7 +8,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build-and-push-image-php81:
+  build-and-push-image-php83:
     runs-on: ubuntu-latest
     permissions:
       contents: read
